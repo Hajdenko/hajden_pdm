@@ -5,6 +5,7 @@ Very Simple Portable PDM script
 
 ## <b>Requirements</b>
 - ox_lib
+- oxmysql
 
 ## <b>Features</b>
 - 0.0ms Usage
@@ -33,6 +34,7 @@ Very Simple Portable PDM script
 ## <b>Installation</b>
 - Download hajden_pdm
 - Add hajden_pdm into your resource folder
+- Modify the config (FRAMEWORK)
 - Add hajden_pdm into your server.cfg file or ensure hajden_pdm
 - Restart server
 
