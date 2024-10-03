@@ -4,7 +4,7 @@ lua54 'yes'
 
 author 'hajdenkoo'
 description 'Advanced PDM using ox_lib for ESX'
-version '1.0.3'
+version '1.0.4'
 
 files {
     'locales/*.json'
