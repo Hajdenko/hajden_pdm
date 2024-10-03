@@ -1,7 +1,7 @@
 Config = {}
 
 --[[
-Possible to leave description empty, will result in not description.
+Possible to leave description empty, will result in no description.
 Possible to leave icon/iconColor empty, will result in a default icon/iconColor.
 ]]
 
