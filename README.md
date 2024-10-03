@@ -27,8 +27,7 @@ Very Simple Portable PDM script
 ![Color Modification](https://github.com/user-attachments/assets/1d1623c6-aa31-4ca9-b704-32187ace3ad4)
 
 
-
-
+Part of utilities from [lsrp_vehicleshop](https://github.com/mikigoalie/lsrp_vehicleshop).
 
 
 ## <b>Installation</b>
