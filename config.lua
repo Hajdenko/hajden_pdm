@@ -61,3 +61,18 @@ Config.TestDrive = {
         --{ x = 2659.2209, y = -3882.0217, z = 141.0009, h = 242.4512 }
     }
 }
+
+
+-- SERVER FUNCTION --
+Config.getMoney = function(source)
+    ESX = exports["es_extended"]:getSharedObject()
+    local xPlayer = ESX.GetPlayerFromId(source)
+
+    return xPlayer.getMoney()
+end
+Config.removeMoney = function(source, amount)
+    ESX = exports["es_extended"]:getSharedObject()
+    local xPlayer = ESX.GetPlayerFromId(source)
+
+    xPlayer.removeMoney(amount)
+end
