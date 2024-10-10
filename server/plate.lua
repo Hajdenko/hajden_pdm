@@ -6,7 +6,7 @@ local function randomChar(set)
 end
 
 local function generatePlate()
-    local pattern = ESX.GetConfig().CustomAIPlates
+    local pattern = Config.vehiclePlatePlate
     local plate = ""
 
     for i = 1, #pattern do
@@ -37,7 +37,7 @@ end
 
 local function plateTaken(plate)
     if not plate then return true end
-    local result = db.select('SELECT `owner` FROM `owned_vehicles` WHERE `plate` = ?', { plate })
+    local result = db.select('SELECT `owner` FROM `'.. ( Config.playerVehiclesTable or "owned_vehicles" ) ..'` WHERE `plate` = ?', { plate })
     return next(result) and true or false
 end
 
