@@ -10,8 +10,7 @@ lib.callback.register('hajden_pdm:serverPurchaseCar', function(source, vehicle, 
 end)
 
 lib.callback.register('hajden_pdm:server:purchaseVehicle', function(source, vehicleProps, color)
-    player = Config.getPlayer(source)
-    if not player then
+    if not Config.getPlayer(source) then
         print('Player not found for source: ' .. source)
         return false
     end
@@ -21,7 +20,7 @@ lib.callback.register('hajden_pdm:server:purchaseVehicle', function(source, vehi
 
         vehicleProps.plate = plate.getPlate()
 
-        local success = db.insertVehicle(xPlayer.identifier, vehicleProps)
+        local success = db.insertVehicle(Config.getIdentifier(source), vehicleProps)
         
         if success then
             return true
