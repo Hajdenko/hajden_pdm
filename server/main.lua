@@ -10,26 +10,23 @@ lib.callback.register('hajden_pdm:serverPurchaseCar', function(source, vehicle, 
 end)
 
 lib.callback.register('hajden_pdm:server:purchaseVehicle', function(source, vehicleProps, color)
-    
-
-    if not xPlayer then
+    player = Config.getPlayer(source)
+    if not player then
         print('Player not found for source: ' .. source)
         return false
     end
 
     if Config.getMoney() >= vehicleProps.price then
-        Config.removeMoney(vehicleProps.price)
+        Config.removeMoney(player, vehicleProps.price)
 
         vehicleProps.plate = plate.getPlate()
 
         local success = db.insertVehicle(xPlayer.identifier, vehicleProps)
         
         if success then
-            print('Vehicle purchase successful for player: ' .. xPlayer.identifier)
             return true
         else
-            print('Database insertion failed for player: ' .. xPlayer.identifier)
-            xPlayer.addMoney(vehicleProps.price) -- Refund the money
+            Config.addMoney(player, vehicleProps.price) -- Refund the money
             return false
         end
     else
