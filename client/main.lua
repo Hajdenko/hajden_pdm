@@ -308,15 +308,19 @@ end)
 shutdown = function()
     lib.closeAlertDialog()
     lib.hideTextUI()
+    DoScreenFadeIn(1000)
 
     SetEntityVisible(cache.ped, true)
 end
 
-RegisterNetEvent('esx:onPlayerLogout', shutdown)
+if GetResourceState('es_extended') ~= "missing" then
+    RegisterNetEvent('esx:onPlayerLogout', shutdown)
+elseif GetResourceState('qb-core') ~= "missing" then
+    RegisterNetEvent('QBCore:Client:OnPlayerUnload', shutdown)
+end
 
-local RES_NAME = GetCurrentResourceName()
 AddEventHandler('onResourceStop', function(resourceName)
-    if (RES_NAME ~= resourceName) then return end
+    if (GetCurrentResourceName() ~= resourceName) then return end
 
     shutdown()
 end)
