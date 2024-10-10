@@ -10,7 +10,7 @@ local db = {}
 
 db.insertVehicle = function(owner, vehicleProps)
     local success = false
-    MySQL.Async.execute('INSERT INTO owned_vehicles (owner, plate, vehicle, stored) VALUES (@owner, @plate, @vehicle, @stored)', {
+    MySQL.Async.execute('INSERT INTO ' .. ( Config.playerVehiclesTable or 'owned_vehicles' ) .. ' (owner, plate, vehicle, stored) VALUES (@owner, @plate, @vehicle, @stored)', {
         ['@owner']   = owner,
         ['@plate']   = vehicleProps.plate,
         ['@vehicle'] = json.encode(vehicleProps),
