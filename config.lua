@@ -63,16 +63,43 @@ Config.TestDrive = {
 }
 
 
--- SERVER FUNCTION --
+-- SERVER CONFIG --
+Config.playerVehiclesTable = "owned_vehicles" -- qbcore: player_vehicles
+
 Config.getMoney = function(source)
     ESX = exports["es_extended"]:getSharedObject()
     local xPlayer = ESX.GetPlayerFromId(source)
 
     return xPlayer.getMoney()
+
+    -- QBCore equivalent:
+    -- local Player = QBCore.Functions.GetPlayer(source)
+    -- return Player.PlayerData.money['cash']
 end
+
 Config.removeMoney = function(source, amount)
     ESX = exports["es_extended"]:getSharedObject()
     local xPlayer = ESX.GetPlayerFromId(source)
 
     xPlayer.removeMoney(amount)
+
+    -- QBCore equivalent:
+    -- local Player = QBCore.Functions.GetPlayer(source)
+    -- Player.Functions.RemoveMoney('cash', amount)
+end
+
+Config.getPlayer = function(source)
+    return ESX.GetPlayerFromId(source)
+end
+
+Config.addMoney = function(player, amount)
+    player.addMoney(amount)
+end
+
+Config.Notify = function(source, message)
+    TriggerClientEvent('ox_lib:notify', source, {
+        title = "PDM",
+        message = message,
+        type = "inform"
+    })
 end
