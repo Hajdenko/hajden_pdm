@@ -16,8 +16,8 @@ lib.callback.register('hajden_pdm:server:purchaseVehicle', function(source, vehi
         return false
     end
 
-    if Config.getMoney() >= vehicleProps.price then
-        Config.removeMoney(player, vehicleProps.price)
+    if Config.getMoney(source) >= vehicleProps.price then
+        Config.removeMoney(source, vehicleProps.price)
 
         vehicleProps.plate = plate.getPlate()
 
@@ -26,11 +26,11 @@ lib.callback.register('hajden_pdm:server:purchaseVehicle', function(source, vehi
         if success then
             return true
         else
-            Config.addMoney(player, vehicleProps.price) -- Refund the money
+            Config.addMoney(source, vehicleProps.price) -- Refund the money
             return false
         end
     else
-        TCE('esx:showNotification', source, locale('not_enough_money'))
+        Config.Notify(source, locale('not_enough_money'))
         return false
     end
 end)
