@@ -1,13 +1,5 @@
 local db = {}
 
----@param {Object} data
----@param {string} data.identifier
----@param {string} data.plate
----@param {string} data.properties - Already json.
----@param {string} data.hasFreeCoords - Boolean.
----@param {string} data.vehicleType - A vehicle type for database, ESX specific.
----@param {string} data.vehicleName - A name of the vehicle.
-
 db.insertVehicle = function(owner, vehicleProps)
     local success = false
     MySQL.Async.execute('INSERT INTO ' .. ( Config.playerVehiclesTable or 'owned_vehicles' ) .. ' (owner, plate, vehicle, stored) VALUES (@owner, @plate, @vehicle, @stored)', {
