@@ -70,6 +70,10 @@ Config.getPlayer = function(source)
     return ESX.GetPlayerFromId(source)
 end
 
+Config.getIdentifier = function(source)
+    return Config.getPlayer(source).identifier
+end
+
 Config.getMoney = function(source)
     return Config.getPlayer(source).getMoney()
 
