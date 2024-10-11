@@ -8,7 +8,7 @@ local Utils = require('client.utils')
 local VehicleSpawner = require('client.vehicleSpawner')
 
 checkVehicleConfig = function(vehicle)
-    return ( not vehicle.model ) or ( not vehicle.price ) or ( vehicle.name )
+    return ( not vehicle.model ) or ( not vehicle.price ) or ( not vehicle.name )
 end
 
 checkCategoryConfig = function(category)
@@ -23,7 +23,7 @@ local function openVehicleShopMenu()
         if checkCategoryConfig(category) then warn("category config is broken") return end
 
         if category.job then
-            if ( category.job ~= cl_config.getPlayerJob() ) then
+            if ( category.job ~= cl_config.getPlayerJob().name ) then
                 return cl_config.Notify("No available categories for you.", "error")
             end
         end
@@ -36,7 +36,7 @@ local function openVehicleShopMenu()
     for _, category in ipairs(Config.Categories) do
         if ( checkCategoryConfig(category) ) then warn("category config is broken") return end
         if ( category.job ) then
-            if ( category.job ~= cl_config.getPlayerJob() ) then
+            if ( category.job ~= cl_config.getPlayerJob().name ) then
                 goto continue
             end
         end
@@ -72,7 +72,7 @@ AddEventHandler('hajden_pdm:showCars', function(vehicles)
     for _, vehicle in ipairs(vehicles) do
         if ( checkVehicleConfig(vehicle) ) then return end
         if ( vehicle.job ) then
-            if ( vehicle.job ~= cl_config.getPlayerJob() ) then
+            if ( vehicle.job ~= cl_config.getPlayerJob().name ) then
                 goto continue
             end
         end
