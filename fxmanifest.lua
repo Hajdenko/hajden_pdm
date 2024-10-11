@@ -27,6 +27,7 @@ client_scripts {
 server_scripts {
     '@es_extended/locale.lua',
     '@mysql-async/lib/MySQL.lua',
+    'EDIT_ME/sv_config.lua',
     'server/plate.lua',
     'server/db.lua',
     'server/main.lua',
