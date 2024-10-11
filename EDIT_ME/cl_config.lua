@@ -5,7 +5,7 @@ cl_config = {
         -- EDIT
     
         lib.callback.await('punish.hajden_pdm:server', false, reason);
-    end
+    end,
 
     Notify = function(description, type, title, duration)
         if not description then print("notifications description is missing") return end
@@ -15,7 +15,7 @@ cl_config = {
             type = type or "inform",
             duration = duration or 3000
         })
-    end
+    end,
 
     getPlayerJob = function()
         return ESX.GetPlayerData().job
