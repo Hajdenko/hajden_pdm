@@ -21,11 +21,9 @@ local function openVehicleShopMenu()
     if #Config.Categories == 1 then
         category = Config.Categories[1]
         if checkCategoryConfig(category) then warn("category config is broken") return end
-
-        if category.job then
-            if ( category.job ~= cl_config.getPlayerJob().name ) then
-                return cl_config.Notify("No available categories for you.", "error")
-            end
+
+        if category.job and ( category.job ~= cl_config.getPlayerJob().name ) then
+            return cl_config.Notify("No available categories for you.", "error")
         end
 
         TE('hajden_pdm:showCars', category.vehicles)
