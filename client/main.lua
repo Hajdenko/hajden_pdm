@@ -33,10 +33,8 @@ local function openVehicleShopMenu()
 
     for _, category in ipairs(Config.Categories) do
         if ( checkCategoryConfig(category) ) then warn("category config is broken") return end
-        if ( category.job ) then
-            if ( category.job ~= cl_config.getPlayerJob().name ) then
-                goto continue
-            end
+        if category.job( category.job ~= cl_config.getPlayerJob().name ) then
+            goto continue
         end
         table.insert(options, {
             title = category.name,
@@ -57,11 +55,8 @@ local function openVehicleShopMenu()
     })
 
     lib.showContext('pdm_menu')
-end
-
-RegisterCommand('pdm', function()
-    openVehicleShopMenu()
-end)
+end
+RegisterCommand('pdm', openVehicleShopMenu)
 
 ---@param vehicles table
 RegisterNetEvent('hajden_pdm:showCars')
@@ -69,10 +64,8 @@ AddEventHandler('hajden_pdm:showCars', function(vehicles)
     local options = {}
     for _, vehicle in ipairs(vehicles) do
         if ( checkVehicleConfig(vehicle) ) then return end
-        if ( vehicle.job ) then
-            if ( vehicle.job ~= cl_config.getPlayerJob().name ) then
-                goto continue
-            end
+        if vehicle.job and ( vehicle.job ~= cl_config.getPlayerJob().name ) then
+            goto continue
         end
 
         table.insert(options, {
@@ -105,7 +98,6 @@ local function endTestDrive(originCoords, vehicle)
     SetEntityVisible(playerPed, true, false)
 
     local vehicleEntity = vehicle or GetVehiclePedIsIn(playerPed, false)
-
     NetworkSetEntityInvisibleToNetwork(vehicleEntity, false)
     if vehicleEntity then
         DeleteEntity(vehicleEntity)
@@ -127,15 +119,13 @@ local function safeVehDelete(vehicle)
 
             if NetworkHasControlOfEntity(vehicle) then
                 SetEntityAsMissionEntity(vehicle, false, true)
-                DeleteEntity(vehicle)
             else
                 SetEntityAsMissionEntity(vehicle, false, true)
-                DeleteVehicle(vehicle)
             end
         else
             SetEntityAsMissionEntity(vehicle, false, true)
-            DeleteEntity(vehicle)
         end
+        DeleteEntity(vehicle)
     end
 end
 
