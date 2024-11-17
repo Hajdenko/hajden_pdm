@@ -6,7 +6,7 @@ local function randomChar(set)
 end
 
 local function generatePlate()
-    local pattern = sv_config.vehiclePlatePlate
+    local pattern = sv_config.vehiclePlatePattern
     local plate = ""
 
     for i = 1, #pattern do
