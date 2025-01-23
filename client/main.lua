@@ -21,7 +21,8 @@ local function openVehicleShopMenu()
     if #Config.Categories == 1 then
         category = Config.Categories[1]
         if checkCategoryConfig(category) then warn("category config is broken") return end
-
+
+
         if category.job and ( category.job ~= cl_config.getPlayerJob().name ) then
             return cl_config.Notify("No available categories for you.", "error")
         end
@@ -33,8 +34,9 @@ local function openVehicleShopMenu()
 
     for _, category in ipairs(Config.Categories) do
         if ( checkCategoryConfig(category) ) then warn("category config is broken") return end
-        if category.job( category.job ~= cl_config.getPlayerJob().name ) then
-            goto continue
+        if category.job and ( category.job ~= cl_config.getPlayerJob().name ) then
+            goto continue
+
         end
         table.insert(options, {
             title = category.name,
@@ -55,7 +57,8 @@ local function openVehicleShopMenu()
     })
 
     lib.showContext('pdm_menu')
-end
+end
+
 RegisterCommand('pdm', openVehicleShopMenu)
 
 ---@param vehicles table
